@@ -1,0 +1,411 @@
+root = true
+
+# All files
+[*]
+indent_style = space
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+tab_width = 4
+indent_size = 4
+end_of_line = crlf
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_prefer_auto_properties = true:silent
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_prefer_collection_expression = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:silent
+dotnet_style_prefer_conditional_expression_over_return = true:silent
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+dotnet_style_prefer_compound_assignment = true:suggestion
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+dotnet_style_namespace_match_folder = true:suggestion
+
+[*.json]
+indent_size = 4
+indent_style = space
+
+[{*.yml,*.yaml}]
+indent_size = 2
+indent_style = space
+
+[*.md]
+trim_trailing_whitespace = false
+
+# XML project files
+[*.{xml,config,*proj,nuspec,props,resx,targets,tasks}]
+indent_size = 2
+
+# Xml config files
+[*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+indent_size = 2
+
+# Code files
+[*.cs]
+indent_size = 4
+dotnet_analyzer_diagnostic.severity = warning
+
+###############################
+# .NET Coding Conventions     #
+###############################
+# this. preferences
+dotnet_style_qualification_for_field = false
+dotnet_style_qualification_for_property = false
+dotnet_style_qualification_for_method = false
+dotnet_style_qualification_for_event = false
+# Language keywords vs BCL types preferences
+dotnet_style_predefined_type_for_locals_parameters_members = true
+dotnet_style_predefined_type_for_member_access = true
+# Parentheses preferences
+dotnet_style_parentheses_in_arithmetic_binary_operators = never_if_unnecessary
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity
+dotnet_style_parentheses_in_other_binary_operators = always_for_clarity
+dotnet_style_parentheses_in_other_operators = never_if_unnecessary
+# Modifier preferences
+dotnet_style_require_accessibility_modifiers = for_non_interface_members
+dotnet_style_readonly_field = true
+# Expression-level preferences
+dotnet_style_object_initializer = true
+dotnet_style_collection_initializer = true
+dotnet_style_explicit_tuple_names = true
+dotnet_style_null_propagation = true
+dotnet_style_coalesce_expression = true
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true
+dotnet_style_prefer_auto_properties = true
+dotnet_style_prefer_conditional_expression_over_assignment = true
+
+dotnet_style_prefer_simplified_interpolation = true
+dotnet_style_prefer_simplified_boolean_expressions = true
+dotnet_style_prefer_compound_assignment = true
+dotnet_style_namespace_match_folder = true
+
+###############################
+# Naming Conventions          #
+###############################
+# Style Definitions
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+# Use PascalCase for constant fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols = constant_fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.style = pascal_case_style
+dotnet_naming_symbols.constant_fields.applicable_kinds = field
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+###############################
+# C# Coding Conventions       #
+###############################
+# Newline settings
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_new_line_before_members_in_object_initializers = true
+csharp_new_line_before_members_in_anonymous_types = true
+csharp_new_line_between_query_expression_clauses = true
+# Indentation preferences
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+# Space preferences
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_between_method_call_parameter_list_parentheses = false
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_parentheses = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_around_binary_operators = before_and_after
+csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+csharp_space_between_method_call_name_and_opening_parenthesis = false
+csharp_space_between_method_call_empty_parameter_list_parentheses = false
+# Wrapping preferences
+csharp_preserve_single_line_blocks = true
+# Brace settings
+csharp_prefer_braces = true:silent# Prefer curly braces even for one line of
+# Expression-bodied members
+csharp_style_expression_bodied_methods = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_operators = true:silent
+csharp_style_expression_bodied_local_functions = true:silent
+csharp_style_expression_bodied_constructors = when_on_single_line:silent
+# Pattern matching preferences
+csharp_style_pattern_matching_over_is_with_cast_check = true
+csharp_style_pattern_matching_over_as_with_null_check = true
+csharp_style_prefer_pattern_matching = true
+csharp_style_prefer_not_pattern = true
+csharp_style_prefer_extended_property_pattern = true
+csharp_style_prefer_switch_expression = true
+csharp_style_prefer_range_operator = true
+csharp_style_prefer_index_operator = true
+# Null-checking preferences
+csharp_style_throw_expression = true:suggestion
+csharp_style_conditional_delegate_call = true
+# Modifier preferences
+csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:suggestion
+# dotnet format config
+csharp_style_var_elsewhere = false
+csharp_style_implicit_object_creation_when_type_is_apparent = true
+csharp_style_namespace_declarations = file_scoped:silent
+
+# Do not declare static members on generic types
+dotnet_diagnostic.CA1000.severity = suggestion
+# use the LoggerMessage delegates
+dotnet_diagnostic.CA1848.severity = none
+# static log message
+dotnet_diagnostic.CA2254.severity = none
+# use Literals Where Appropriate
+dotnet_diagnostic.CA1802.severity = warning
+# ToLower behavior
+dotnet_diagnostic.CA1304.severity = none
+# Do not prefix enum values with type name
+dotnet_diagnostic.CA1712.severity = warning
+# Identifiers should not match keywords
+dotnet_diagnostic.CA1716.severity = suggestion
+# Identifier contains type name
+dotnet_diagnostic.CA1720.severity = silent
+# Type names should not match namespaces
+dotnet_diagnostic.CA1724.severity = warning
+# Mark members as static
+dotnet_diagnostic.CA1822.severity = none
+# Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
+# Do not expose generic lists
+dotnet_diagnostic.CA1002.severity = warning
+# Do not directly await a Task
+dotnet_diagnostic.CA2007.severity = none
+# Implement standard exception constructors
+dotnet_diagnostic.CA1032.severity = none
+# Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = none
+# Remove the underscores from member name
+dotnet_diagnostic.CA1707.severity = none
+
+# Using directives must be placed outside of a namespace declaration
+dotnet_diagnostic.IDE0065.severity = none
+# Use conditional expression for return
+dotnet_diagnostic.IDE0046.severity = none
+# Remove unnecessary expression value
+dotnet_diagnostic.IDE0058.severity = none
+# Use primary constructors
+dotnet_diagnostic.IDE0290.severity = suggestion
+# Collection initialization can be simplified
+dotnet_diagnostic.IDE0305.severity = suggestion
+
+# Microsoft.CodeAnalysis.CSharp
+
+dotnet_diagnostic.CS1591.severity = none
+
+# StyleCop.Analyzers
+
+dotnet_diagnostic.SA0102.severity = none
+dotnet_diagnostic.SA1000.severity = none
+dotnet_diagnostic.SA1001.severity = none
+dotnet_diagnostic.SA1002.severity = none
+dotnet_diagnostic.SA1003.severity = none
+dotnet_diagnostic.SA1004.severity = none
+dotnet_diagnostic.SA1005.severity = none
+dotnet_diagnostic.SA1006.severity = none
+dotnet_diagnostic.SA1007.severity = none
+dotnet_diagnostic.SA1008.severity = none
+dotnet_diagnostic.SA1009.severity = none
+dotnet_diagnostic.SA1010.severity = none
+dotnet_diagnostic.SA1011.severity = none
+dotnet_diagnostic.SA1012.severity = none
+dotnet_diagnostic.SA1013.severity = none
+dotnet_diagnostic.SA1014.severity = none
+dotnet_diagnostic.SA1015.severity = none
+dotnet_diagnostic.SA1016.severity = none
+dotnet_diagnostic.SA1017.severity = none
+dotnet_diagnostic.SA1018.severity = none
+dotnet_diagnostic.SA1019.severity = none
+dotnet_diagnostic.SA1020.severity = none
+dotnet_diagnostic.SA1021.severity = none
+dotnet_diagnostic.SA1022.severity = none
+dotnet_diagnostic.SA1023.severity = none
+dotnet_diagnostic.SA1024.severity = none
+dotnet_diagnostic.SA1025.severity = none
+dotnet_diagnostic.SA1026.severity = none
+dotnet_diagnostic.SA1027.severity = none
+dotnet_diagnostic.SA1028.severity = none
+dotnet_diagnostic.SA1029.severity = warning
+dotnet_diagnostic.SA1100.severity = none
+dotnet_diagnostic.SA1101.severity = none
+dotnet_diagnostic.SA1102.severity = warning
+dotnet_diagnostic.SA1103.severity = none
+dotnet_diagnostic.SA1104.severity = none
+dotnet_diagnostic.SA1105.severity = warning
+dotnet_diagnostic.SA1106.severity = warning
+dotnet_diagnostic.SA1107.severity = warning
+dotnet_diagnostic.SA1108.severity = none
+dotnet_diagnostic.SA1109.severity = warning
+dotnet_diagnostic.SA1110.severity = none
+dotnet_diagnostic.SA1111.severity = none
+dotnet_diagnostic.SA1112.severity = none
+dotnet_diagnostic.SA1113.severity = warning
+dotnet_diagnostic.SA1114.severity = warning
+dotnet_diagnostic.SA1115.severity = none
+dotnet_diagnostic.SA1116.severity = none
+dotnet_diagnostic.SA1117.severity = none
+dotnet_diagnostic.SA1118.severity = none
+dotnet_diagnostic.SA1119.severity = none
+dotnet_diagnostic.SA1120.severity = warning
+dotnet_diagnostic.SA1121.severity = warning
+dotnet_diagnostic.SA1122.severity = warning
+dotnet_diagnostic.SA1123.severity = warning
+dotnet_diagnostic.SA1124.severity = warning
+dotnet_diagnostic.SA1125.severity = warning
+dotnet_diagnostic.SA1126.severity = none
+dotnet_diagnostic.SA1127.severity = none
+dotnet_diagnostic.SA1128.severity = none
+dotnet_diagnostic.SA1129.severity = none
+dotnet_diagnostic.SA1130.severity = none
+dotnet_diagnostic.SA1131.severity = none
+dotnet_diagnostic.SA1132.severity = none
+dotnet_diagnostic.SA1133.severity = none
+dotnet_diagnostic.SA1134.severity = none
+dotnet_diagnostic.SA1200.severity = none
+dotnet_diagnostic.SA1201.severity = warning
+dotnet_diagnostic.SA1202.severity = warning
+dotnet_diagnostic.SA1203.severity = warning
+dotnet_diagnostic.SA1204.severity = warning
+dotnet_diagnostic.SA1205.severity = none
+dotnet_diagnostic.SA1206.severity = none
+dotnet_diagnostic.SA1207.severity = warning
+dotnet_diagnostic.SA1208.severity = none
+dotnet_diagnostic.SA1209.severity = warning
+dotnet_diagnostic.SA1210.severity = none
+dotnet_diagnostic.SA1211.severity = warning
+dotnet_diagnostic.SA1212.severity = warning
+dotnet_diagnostic.SA1213.severity = warning
+dotnet_diagnostic.SA1214.severity = warning
+dotnet_diagnostic.SA1216.severity = warning
+dotnet_diagnostic.SA1217.severity = none
+dotnet_diagnostic.SA1300.severity = warning
+dotnet_diagnostic.SA1301.severity = warning
+dotnet_diagnostic.SA1302.severity = warning
+dotnet_diagnostic.SA1303.severity = warning
+dotnet_diagnostic.SA1304.severity = warning
+dotnet_diagnostic.SA1305.severity = none
+dotnet_diagnostic.SA1306.severity = warning
+dotnet_diagnostic.SA1307.severity = warning
+dotnet_diagnostic.SA1308.severity = warning
+dotnet_diagnostic.SA1309.severity = warning
+dotnet_diagnostic.SA1310.severity = warning
+dotnet_diagnostic.SA1311.severity = none
+dotnet_diagnostic.SA1312.severity = none
+dotnet_diagnostic.SA1313.severity = none
+dotnet_diagnostic.SA1400.severity = warning
+dotnet_diagnostic.SA1401.severity = none
+dotnet_diagnostic.SA1402.severity = warning
+dotnet_diagnostic.SA1403.severity = warning
+dotnet_diagnostic.SA1404.severity = warning
+dotnet_diagnostic.SA1405.severity = warning
+dotnet_diagnostic.SA1406.severity = warning
+dotnet_diagnostic.SA1407.severity = none
+dotnet_diagnostic.SA1408.severity = none
+dotnet_diagnostic.SA1409.severity = warning
+dotnet_diagnostic.SA1410.severity = warning
+dotnet_diagnostic.SA1411.severity = none
+dotnet_diagnostic.SA1413.severity = none
+dotnet_diagnostic.SA1500.severity = none
+dotnet_diagnostic.SA1501.severity = none
+dotnet_diagnostic.SA1502.severity = none
+dotnet_diagnostic.SA1503.severity = none
+dotnet_diagnostic.SA1504.severity = none
+dotnet_diagnostic.SA1505.severity = none
+dotnet_diagnostic.SA1506.severity = none
+dotnet_diagnostic.SA1507.severity = none
+dotnet_diagnostic.SA1508.severity = none
+dotnet_diagnostic.SA1509.severity = none
+dotnet_diagnostic.SA1510.severity = none
+dotnet_diagnostic.SA1511.severity = none
+dotnet_diagnostic.SA1512.severity = none
+dotnet_diagnostic.SA1513.severity = none
+dotnet_diagnostic.SA1514.severity = none
+dotnet_diagnostic.SA1515.severity = none
+dotnet_diagnostic.SA1516.severity = none
+dotnet_diagnostic.SA1517.severity = none
+dotnet_diagnostic.SA1518.severity = none
+dotnet_diagnostic.SA1519.severity = none
+dotnet_diagnostic.SA1520.severity = none
+dotnet_diagnostic.SA1600.severity = warning
+dotnet_diagnostic.SA1601.severity = warning
+dotnet_diagnostic.SA1602.severity = warning
+dotnet_diagnostic.SA1603.severity = warning
+dotnet_diagnostic.SA1604.severity = warning
+dotnet_diagnostic.SA1605.severity = warning
+dotnet_diagnostic.SA1606.severity = warning
+dotnet_diagnostic.SA1607.severity = warning
+dotnet_diagnostic.SA1608.severity = warning
+dotnet_diagnostic.SA1610.severity = none
+dotnet_diagnostic.SA1611.severity = warning
+dotnet_diagnostic.SA1612.severity = warning
+dotnet_diagnostic.SA1613.severity = warning
+dotnet_diagnostic.SA1614.severity = warning
+dotnet_diagnostic.SA1615.severity = warning
+dotnet_diagnostic.SA1616.severity = warning
+dotnet_diagnostic.SA1617.severity = warning
+dotnet_diagnostic.SA1618.severity = none
+dotnet_diagnostic.SA1619.severity = warning
+dotnet_diagnostic.SA1620.severity = warning
+dotnet_diagnostic.SA1621.severity = warning
+dotnet_diagnostic.SA1622.severity = warning
+dotnet_diagnostic.SA1623.severity = none
+dotnet_diagnostic.SA1624.severity = warning
+dotnet_diagnostic.SA1625.severity = none
+dotnet_diagnostic.SA1626.severity = warning
+dotnet_diagnostic.SA1627.severity = warning
+dotnet_diagnostic.SA1628.severity = warning
+dotnet_diagnostic.SA1629.severity = warning
+dotnet_diagnostic.SA1633.severity = none
+dotnet_diagnostic.SA1634.severity = none
+dotnet_diagnostic.SA1635.severity = none
+dotnet_diagnostic.SA1636.severity = none
+dotnet_diagnostic.SA1637.severity = none
+dotnet_diagnostic.SA1638.severity = none
+dotnet_diagnostic.SA1640.severity = none
+dotnet_diagnostic.SA1641.severity = none
+dotnet_diagnostic.SA1642.severity = none
+dotnet_diagnostic.SA1643.severity = none
+dotnet_diagnostic.SA1644.severity = warning
+dotnet_diagnostic.SA1646.severity = warning
+dotnet_diagnostic.SA1647.severity = warning
+dotnet_diagnostic.SA1648.severity = warning
+dotnet_diagnostic.SA1649.severity = none
+dotnet_diagnostic.SA1651.severity = none
+
+# Sonar scaner
+
+dotnet_diagnostic.S1118.severity = suggestion
+
+### Configuration for .Net analyzers executed on this repo ###
+
+# Default analyzed API surface = 'all' (public APIs + non-public APIs)
+dotnet_code_quality.api_surface = all
+# Do not expose generic lists
+dotnet_code_quality.CA1002.api_surface = public
+csharp_indent_labels = one_less_than_current
+csharp_using_directive_placement = outside_namespace:silent
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_style_expression_bodied_lambdas = true:silent
+
+### Settings for Asp.net
+
+# ASP0014: Suggest using top level route registrations
+dotnet_diagnostic.ASP0014.severity = suggestion
+
+[*Tests.cs]
+# Use local function instead of lambda
+dotnet_diagnostic.IDE0039.severity = none
+
+[**/Migrations/**]
+generated_code = true

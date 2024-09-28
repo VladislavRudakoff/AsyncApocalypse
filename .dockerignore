@@ -1,0 +1,28 @@
+# Common
+**/README*
+**/CHANGELOG*
+**/LICENSE
+**/docs/
+
+# Docker
+**/docker-compose*
+**/Dockerfile*
+**/.dockerignore*
+
+# Git
+**/.git
+**/.gitattributes
+**/.gitignore
+**/.github
+
+# .NET
+**/bin/
+**/obj/
+**/Properties/
+**/appsettings.*.json
+
+# Visual Studio
+**/.vs/
+
+# VSCode
+**/.vscode/
