@@ -1,0 +1,937 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "links": [],
+    "panels": [
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "description": "Общие метрики связанные с потоками",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 15,
+          "x": 0,
+          "y": 0
+        },
+        "id": 19,
+        "interval": "5",
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "sum(process_thread_count{instance=\"async-app:8080\"})",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "legendFormat": "Async-app threads",
+            "range": true,
+            "refId": "A",
+            "useBackend": false
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(process_thread_count{instance=\"sync-app:8080\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Sync-app threads",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(process_runtime_dotnet_thread_pool_threads_count{instance=\"async-app:8080\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Async-app thread pool count",
+            "range": true,
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(process_runtime_dotnet_thread_pool_threads_count{instance=\"sync-app:8080\"})",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Sync-app thread pool count",
+            "range": true,
+            "refId": "D"
+          }
+        ],
+        "title": "Threads",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "description": "Общее количество ошибочных запросов",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-red",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 9,
+          "x": 15,
+          "y": 0
+        },
+        "id": 2,
+        "interval": "5",
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "center",
+          "orientation": "vertical",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "value_and_name",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.2.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "http_server_request_duration_seconds_count{http_response_status_code=~\"5..|4..|0\",http_request_method=\"GET\",http_route=\"/async-work\"}",
+            "instant": false,
+            "legendFormat": "Async",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "http_server_request_duration_seconds_count{http_response_status_code=~\"5..|4..|0\",http_request_method=\"GET\",http_route=\"/sync-work\"}",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Sync",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "HTTP request failures",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "description": "Общее количество выполненных запросов на сервер",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 15,
+          "x": 0,
+          "y": 7
+        },
+        "id": 1,
+        "interval": "5",
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.2.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(increase(http_server_request_duration_seconds_count{http_request_method=\"GET\",http_route=\"/async-work\"}[$__rate_interval]))",
+            "instant": false,
+            "legendFormat": "Async",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(increase(http_server_request_duration_seconds_count{http_request_method=\"GET\",http_route=\"/sync-work\"}[$__rate_interval]))",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Sync",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "HTTP requests",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "description": "Количество запросов в секунду, которые без проблем проходят на сервер",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "reqps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 9,
+          "x": 15,
+          "y": 7
+        },
+        "id": 5,
+        "interval": "5",
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "horizontal",
+          "percentChangeColorMode": "standard",
+          "reduceOptions": {
+            "calcs": [],
+            "fields": "",
+            "values": false
+          },
+          "showPercentChange": false,
+          "textMode": "auto",
+          "wideLayout": true
+        },
+        "pluginVersion": "11.2.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(irate(k6_http_reqs_total{scenario=\"async_test\"}[$__rate_interval]))",
+            "instant": false,
+            "legendFormat": "Async",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "sum(irate(k6_http_reqs_total{scenario=\"sync_test\"}[$__rate_interval]))",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Sync",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "Peak RPS",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "description": "min/max/p95/p99 depends on the available Quantile Stats",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "name"
+              },
+              "properties": [
+                {
+                  "id": "filterable",
+                  "value": false
+                },
+                {
+                  "id": "custom.width",
+                  "value": 618
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "method"
+              },
+              "properties": [
+                {
+                  "id": "filterable",
+                  "value": false
+                },
+                {
+                  "id": "custom.width",
+                  "value": 266
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "status"
+              },
+              "properties": [
+                {
+                  "id": "filterable",
+                  "value": false
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "min"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "s"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 201
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "max"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "s"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 204
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "p95"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "s"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 177
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "p99"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "s"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 24,
+          "x": 0,
+          "y": 14
+        },
+        "id": 18,
+        "interval": "5",
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "enablePagination": true,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 2,
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "min"
+            }
+          ]
+        },
+        "pluginVersion": "11.2.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "histogram_quantile(0, sum by(le, name, method) (rate(k6_http_req_duration_seconds[$__rate_interval])))",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "min",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "histogram_quantile(1, sum by(le, name, method) (rate(k6_http_req_duration_seconds[$__rate_interval])))",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "interval": "",
+            "legendFormat": "max",
+            "range": true,
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "histogram_quantile(0.95, sum by(le, name, method) (rate(k6_http_req_duration_seconds[$__rate_interval])))",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "p95",
+            "range": true,
+            "refId": "D"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "histogram_quantile(0.99, sum by(le, name, method) (rate(k6_http_req_duration_seconds[$__rate_interval])))",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "E"
+          }
+        ],
+        "title": "Requests by URL",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value #B": {
+                  "aggregations": [
+                    "min"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value #C": {
+                  "aggregations": [
+                    "max"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value #D": {
+                  "aggregations": [
+                    "mean"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value #E": {
+                  "aggregations": [
+                    "mean"
+                  ],
+                  "operation": "aggregate"
+                },
+                "method": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "name": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "status": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true
+              },
+              "includeByName": {},
+              "indexByName": {
+                "Time": 0,
+                "Value #B": 4,
+                "Value #C": 5,
+                "Value #D": 6,
+                "Value #E": 7,
+                "method": 2,
+                "name": 1,
+                "status": 3
+              },
+              "renameByName": {
+                "Value #B": "min",
+                "Value #B (min)": "min",
+                "Value #C": "max",
+                "Value #C (max)": "max",
+                "Value #D": "p95",
+                "Value #D (mean)": "p95",
+                "Value #E": "p99",
+                "Value #E (mean)": "p99",
+                "method": ""
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 15,
+          "x": 0,
+          "y": 20
+        },
+        "id": 20,
+        "interval": "5",
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "process_memory_usage_bytes / 1048576",
+            "instant": false,
+            "legendFormat": "{{instance}} process Mb usage",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "Memory",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "default": true,
+          "type": "prometheus",
+          "uid": "prometheusdatasource"
+        },
+        "description": "Сколько всего HTTP-запросов сгенерировал k6",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic-by-name"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 30,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 9,
+          "x": 15,
+          "y": 20
+        },
+        "id": 21,
+        "interval": "5",
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.2.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "k6_http_reqs_total{app=~\"async|sync\",status=\"200\"}",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "{{app}} successfully requests count",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "prometheusdatasource"
+            },
+            "editorMode": "code",
+            "expr": "k6_http_reqs_total{app=~\"async|sync\",status=~\"5..|4..|0\"}",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "{{app}} error requests count",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "k6 total requests",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "auto",
+    "schemaVersion": 39,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": ".NET Dashboard",
+    "uid": "bdzhi80s2b4zka",
+    "version": 1,
+    "weekStart": ""
+  }

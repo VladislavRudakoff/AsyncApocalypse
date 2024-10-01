@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 1s
+
+scrape_configs:
+  - job_name: 'aspnet-apps'
+    static_configs:
+      - targets: ['sync-app:8080', 'async-app:8080']
+
+  - job_name: 'k6'
+    static_configs:
+      - targets: ['k6:6565']
