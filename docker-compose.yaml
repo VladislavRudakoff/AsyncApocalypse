@@ -1,0 +1,62 @@
+services:
+  sync-app:
+    build:
+      context: .
+      dockerfile: src/SyncApp.Api/Dockerfile
+    ports:
+      - "5000:8080"
+    labels:
+      - "com.prometheus.enable=true"
+      - "com.prometheus.port=8080"
+
+  async-app:
+    build:
+      context: .
+      dockerfile: src/AsyncApp.Api/Dockerfile
+    ports:
+      - "5001:8080"
+    labels:
+      - "com.prometheus.enable=true"
+      - "com.prometheus.port=8080"
+
+  k6:
+    build:
+      context: .
+      dockerfile: .k6/Dockerfile
+    depends_on:
+      - sync-app
+      - async-app
+    environment:
+      - K6_PROMETHEUS_RW_SERVER_URL=http://prometheus:9090/api/v1/write
+      - K6_PROMETHEUS_RW_TREND_AS_NATIVE_HISTOGRAM=true
+      - K6_PROMETHEUS_RW_USERNAME=admin
+      - K6_PROMETHEUS_RW_PASSWORD=admin
+    ports:
+      - "5665:5665"
+    volumes:
+      - ./.k6:/scripts
+    entrypoint: ["k6", "run", "-o", "experimental-prometheus-rw", "/scripts/load_testing.js"]
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - --web.enable-remote-write-receiver
+      - --enable-feature=native-histograms
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana:11.2.1
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
