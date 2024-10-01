@@ -2,9 +2,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # 17
 VisualStudioVersion = 17.11.35125.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyncApp.Api", "src\SyncApp.Api\SyncApp.Api.csproj", "{18888BA8-078F-486D-B464-446B30D66A3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SyncApp.Api", "src\SyncApp.Api\SyncApp.Api.csproj", "{18888BA8-078F-486D-B464-446B30D66A3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApp.Api", "src\AsyncApp.Api\AsyncApp.Api.csproj", "{CEA784BA-217C-495E-80AE-51EAC919FFFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncApp.Api", "src\AsyncApp.Api\AsyncApp.Api.csproj", "{CEA784BA-217C-495E-80AE-51EAC919FFFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBA196A3-AC75-4372-8C4A-9E24ADCCBD26}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k6", "k6", "{C7A42186-E1F4-4FE6-809B-FEA2FD03E471}"
+	ProjectSection(SolutionItems) = preProject
+		.k6\Dockerfile = .k6\Dockerfile
+		.k6\load_testing.js = .k6\load_testing.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
